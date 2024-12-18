@@ -145,6 +145,8 @@ export const filterBooksBySearch = (booksArr, searchTerm) => {
   //   return wordSearched;
   // };
 
+  // return booksArr.filter((value) => value.includes(searchTerm));
+
   const filterBooks = booksArr.filter((value) => {
     if (value.includes(searchTerm)) {
       return value;

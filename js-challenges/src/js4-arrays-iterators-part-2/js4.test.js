@@ -155,7 +155,7 @@ describe("Testing sortNumbersHighToLow()", () => {
   });
 });
 
-xdescribe("Testing checkItemInstock()", () => {
+describe("Testing checkItemInstock()", () => {
   const stockList = [
     "apple",
     "banana",

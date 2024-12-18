@@ -10,6 +10,12 @@ for (let i = 0; i < nums.length; i++) {
 
 console.log(doubledNums);
 
+let myValue = 30;
+for (let i = 5; i < 9; i++) {
+  myValue += 2;
+}
+
+console.log(myValue);
 // It's a very common problem - I have an array and ned a new array based on the first one
 // I needed to make sure I create an empty array to push to
 // I needed to make sure I set up my loop correctly - that I get the index logic right
@@ -29,14 +35,14 @@ function add(x, y) {
   return x + y;
 }
 
-const suits = ["A", "B", "C", "D"];
+const suits = ["spade", "heart", "diamond", "club"];
 
 const drawCards = (n = 10) => {
   const cards = [];
   console.log(n);
-  while (cards.length <= n) {
+  while (cards.length < n) {
     console.log(n);
-    let card = Math.floor(Math.random() * 13) + 1;
+    let card = Math.floor(Math.random() * 14);
     card += suits[Math.floor(Math.random() * 4)];
     if (cards.includes(card)) continue;
     cards.push(card);
@@ -46,14 +52,27 @@ const drawCards = (n = 10) => {
 };
 
 console.log(drawCards(5));
-//console.log(drawCards(55));
+console.log(drawCards(55));
 console.log(drawCards(21));
+
+
 
 function subtract(a, b) {
   console.log("subtracting");
   return a - b;
 }
 
+const sources = [1, 2, 3, 4, 5];
+//const destination = [];
+
+const destination = sources.reduce((acc, curr) => {
+  const current = curr + 3;
+  if (current % 2 === 0) {
+    acc.push(current);
+  }
+  return acc;
+}, []);
+console.log(destination);
 function doMath(num1, num2, callback) {
   console.log(callback);
   return callback(num1, num2);
@@ -203,60 +222,62 @@ let numberString = "1+2+300+4+5";
 // */
 console.log(numberString);
 console.log(numberString.split("+"));
-// const convertStringToNumbersArray = (numberString) => {
-//   console.log(numberString);
-//   const numSplit = numberString.map((num) => {
-//     return num.split()[0];
-//     console.log(num);
-//   });
+const convertStringToNumbersArray = (numberString) => {
+  console.log(numberString);
+  const numSplit = numberString.map((num) => {
+    return num.split()[0];
+    console.log(num);
+  });
 
-//   numberString.split();
+  numberString.split();
 
-//   // return;
-// };
+  // return;
+};
 
 const newArray = new Array(2).fill(null);
 console.log(newArray);
 console.log(`Aspi${newArray.pop() ?? "ra"}tions`);
 
 const person = { name: "Allen" };
-console.log(`${("" + person.age).slice(4, 6)}nance`);
+console.log(`${("" + person.age).slice(3, 6)}nance`);
 
 const chars = [74, 97, 118, 97, 83, 99, 114, 105, 112, 116];
 
 let i = 0;
 let output = "";
 
-// while (i < chars.length) {
-//   output += String.fromCharCode(chars[i]);
-//   console.log(output);
-//   i++;
-// }
+while (i++ <= chars.length) {
+  output += String.fromCharCode(chars[i]);
+  console.log(output);
+  i++;
+}
 
 const expected = "JavaScript";
 console.log("Expected:", expected);
 console.log("Actual", output);
 console.log(expected === output);
 //
-//let str = '';
-for (let i = 0; i < 10; i++) {
-  str += i;
-}
+// //let str = '';
+// for (let i = 0; i < 10; i++) {
+//  // str += i;
+// }
 
-console.log(str);
+// console.log(str);
 
 console.log(("ba" + +"a" + "a").toLowerCase());
 
-const source = "Convert to snakecase".split("");
-let str = "";
-for (let i = 0; i < source.length; i++) {
-  if (source[i] === " ") {
-    str += "_";
-  } else {
-    str += source[i].toLowerCase();
-  }
-}
-console.log(str);
+// console.log(source);
+// let s = "";
+// // for (let i = 0; i < source.length; i++) {
+//   if (source[i] === " ") {
+//     s += "_";
+//   } else {
+//     s += source[i].toLowerCase();
+//   }
+// }
+// console.log(s);
+
+
 
 function convertStringToNumbersArray(numberString) {
   let newString = numberString.split("");
@@ -272,25 +293,38 @@ function convertStringToNumbersArray(numberString) {
 let numStr = "1+2+3+4+5";
 console.log(convertStringToNumbersArray(numStr));
 
+const sa = 0;
+for (let i = 0; i < 10; i++) {
+  console.log(sa);
+  sa += i;
+}
+console.log(sa);
+
 let bookArr = [
   "JavaScript: The Definitive Guide",
   "JavaScript: The Good Parts",
   "The Google story",
   "React for Dummies",
 ];
-console.log(bookArr.split(""));
+// console.log(bookArr.split(""));
 
 const arr = new Array(2).fill(null);
 console.log(`Aspi${arr.pop() ?? "ra"}tions`);
 
+// return allergyList;
+//let customerAllergy = Object.values(customer)[2];
+//let customerAllergy = Object.values(customer)[2];
+// let allergenSafe = [];
+// for (let i = 0; i < allergenList.length; i++) {
+//   if (!allergenList.includes(customerAllergy[i])) {
+//     allergenSafe.push(allergenList[i]);
+//   }
+// }
+let newArr = [];
 
-  // return allergyList;
-  //let customerAllergy = Object.values(customer)[2];
-  //let customerAllergy = Object.values(customer)[2];
-  // let allergenSafe = [];
-  // for (let i = 0; i < allergenList.length; i++) {
-  //   if (!allergenList.includes(customerAllergy[i])) {
-  //     allergenSafe.push(allergenList[i]);
-  //   }
-  // }
-  let newArr = [];
+
+
+const filterBooksBySearch  = (booksArr, searchTerm) => {
+  return booksArr.filter((value) => value.includes(searchTerm));
+  
+}

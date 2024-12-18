@@ -17,7 +17,15 @@ export const greet = () => {
  * @returns {number}
  */
 export const sumTwoNumbers = (firstNumber, secondNumber) => {
-  return firstNumber + secondNumber;
+  if (firstNumber === undefined || secondNumber === undefined) {
+    throw new Error("This function needs two parameters");
+  }
+
+  if (typeof firstNumber !== "number" || typeof secondNumber !== "number") {
+    throw new Error("Both firstNumber and secondNumber should be numbers");
+  }
+
+  return +(firstNumber + secondNumber);
 };
 
 /**
@@ -27,6 +35,14 @@ export const sumTwoNumbers = (firstNumber, secondNumber) => {
  * @returns {string}
  */
 export const checkLarger = (firstNumber, secondNumber) => {
+  if (firstNumber === undefined || secondNumber === undefined) {
+    throw new Error("This function needs two parameters");
+  }
+
+  if (typeof firstNumber !== "number" || typeof secondNumber !== "number") {
+    throw new Error("Both firstNumber and secondNumber should be numbers");
+  }
+
   if (firstNumber === secondNumber) {
     return "Both numbers are equal";
   } else if (firstNumber > secondNumber) {
@@ -42,6 +58,14 @@ export const checkLarger = (firstNumber, secondNumber) => {
  * @returns {array | string} array of valid names or a string "Sorry, no valid names supplied"
  */
 export const filterByLength = (names) => {
+  if (names === undefined) {
+    throw new Error("This function needs a parameter");
+  }
+
+  if (typeof names !== "object") {
+    throw new Error("Names should be an array");
+  }
+
   const validNames = names.filter((name) => name.length <= 6);
   if (validNames[0]) {
     return validNames;
@@ -59,6 +83,14 @@ export const filterByLength = (names) => {
  * @returns {array} of values between 0 - 255
  */
 export const reduceNumbers = (numbers, reducer) => {
+  if (numbers === undefined || reducer === undefined) {
+    throw new Error("This function needs two parameters");
+  }
+
+  if (typeof numbers !== "object" || typeof reducer !== "number") {
+    throw new Error("Names should be an array and reducer should be a number");
+  }
+
   return numbers.map((number) => {
     if (number - reducer <= 0) {
       return 0;

@@ -18,10 +18,10 @@
  */
 export const getEmployeeQuotes = (employeeArr) => {
   // Write code here
-  let strArr = [];
-  strArr = Object.values(employeeArr.quote);
-
-  return strArr;
+  const quotes = employeeArr.map((employee) => {
+    return employee.quote;
+  });
+  return quotes;
 };
 
 /**
@@ -31,10 +31,14 @@ export const getEmployeeQuotes = (employeeArr) => {
  * @returns {{name: string, quote: string, yearsEmployed: number, isManagement: boolean}[]} An array containing only managers
  */
 export const getTheManagers = (employeeArr) => {
-  const managers = employeeArr.filter((n) => {
-    if (Object.values(employeeArr.isManagement)) {
+  let managers = employeeArr.filter((n) => {
+    if (n.isManagement) {
       return n;
     }
+  });
+
+  managers = managers.map((n) => {
+    return n;
   });
   return managers;
 };
@@ -43,7 +47,7 @@ export const getTheManagers = (employeeArr) => {
  * A function which tells you the number of keys on the provided object.
  *
  * @param {object} object - The provided object with an assortment of keys
- * @returns {number} The number of the keys on the object
+ * @returns {number} The number ofcd the keys on the object
  */
 export const getNumberOfKeys = (object) => {
   return Object.keys(object).length;
@@ -59,10 +63,13 @@ export const getNumberOfKeys = (object) => {
  * @param {{name: string, price: number, hasFreeShipping: boolean, quantity: number}[]} shoppingBasketArr - An array of basket items for an online shop
  * @returns {{name: string, price: number, hasFreeShipping: boolean, quantity: number}} The most expensive item in the shopping basket
  */
+//used ternary operator to compare prices
 export const findMostExpensiveItem = (shoppingBasketArr) => {
-  // Write code here
+  const mostExpensiveItem = shoppingBasketArr.reduce((acc, curr) =>
+    acc.price > curr.price ? acc : curr
+  );
+  return mostExpensiveItem;
 };
-
 /**
  * A function which add a new key of totalPrice to each shopping basket item in the array where total cost is
  * the price * the quantity of items ordered i.e.
@@ -79,7 +86,12 @@ export const findMostExpensiveItem = (shoppingBasketArr) => {
  * @returns {{name: string, price: number, hasFreeShipping: boolean, quantity: number, totalPrice: number}[]} A new array where each object has had a total price added to it
  */
 export const settotalPrice = (shoppingBasketArr) => {
-  // Write code here
+  const shopping = JSON.parse(JSON.stringify(shoppingBasketArr));
+  const totalPrice = shopping.map((item) => {
+    item.totalPrice = item.price * item.quantity;
+    return item;
+  });
+  return totalPrice;
 };
 
 /**
@@ -90,6 +102,11 @@ export const settotalPrice = (shoppingBasketArr) => {
  */
 export const totalShoppingBasket = (shoppingBasketArr) => {
   // Write code here
+
+  const sumOfItems = shoppingBasketArr.reduce((acc, curr) => {
+    return acc + curr.totalPrice;
+  }, 0);
+  return sumOfItems;
 };
 
 /* Advanced Challenges */
@@ -103,6 +120,13 @@ export const totalShoppingBasket = (shoppingBasketArr) => {
  */
 export const getImportantKeys = (mealsArr) => {
   // Write code here
+  const meals = JSON.parse(JSON.stringify(mealsArr));
+  const deleteUnwantedKeys = meals.map((n) => {
+    delete n.timeStamp;
+    delete n.userCreated;
+    return n;
+  });
+  return deleteUnwantedKeys;
 };
 
 /**
@@ -117,6 +141,19 @@ export const getImportantKeys = (mealsArr) => {
  */
 export const setImportantKeys = (mealsArr) => {
   // Write code here
+  const meals = JSON.parse(JSON.stringify(mealsArr));
+
+  const addKeys = meals.map((n) => {
+    if (!("isVegetarian" in n)) {
+      n.isVegetarian = false;
+    }
+    if (!("timeToCook" in n)) {
+      n.timeToCook = 15;
+    }
+    return n;
+  });
+
+  return addKeys;
 };
 
 /* Expert Challenge */
@@ -148,5 +185,42 @@ export const setImportantKeys = (mealsArr) => {
  * }[]} A Cleaned array of cocktail data
  */
 export const cleanCocktailResponseData = (cocktailData) => {
-  // Write code here
+  const cocktails = JSON.parse(JSON.stringify(cocktailData));
+
+  let cocktail = cocktails.map((c) => {
+    c.id = c.idDrink;
+    c.drink = c.strDrink;
+    c.category = c.strCategory;
+    c.alcoholic = c.strAlcoholic;
+    c.instructions = c.strInstructions;
+    c.ingredients = [
+      c.strIngredient1,
+      c.strIngredient2,
+      c.strIngredient3,
+      // c.strIngredient4,
+      // c.strIngredient5,
+      // c.strIngredient6,
+    ];
+    delete c.idDrink;
+    delete c.strDrink;
+    delete c.strCategory;
+    delete c.strAlcoholic;
+    delete c.strInstructions;
+    delete c.strIngredient1;
+    delete c.strIngredient2;
+    delete c.strIngredient3;
+    delete c.strIngredient4;
+    delete c.strIngredient5;
+    delete c.strIngredient6;
+
+    let ing = c.ingredients;
+    const ings = ing.forEach((element) => {
+      if (element === null) {
+        ing.pop(element);
+      }
+      return ing;
+    });
+    return c;
+  });
+  return cocktail;
 };
